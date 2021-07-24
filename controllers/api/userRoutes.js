@@ -1,12 +1,14 @@
 const bcrypt = require("bcrypt");
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
     try {
         const postData = await User.findByPk(req.session.user_id, {
+            attributes: {exclude: ['password']},
             include: [
+                
                 {
                     model: Post,
                 },
@@ -19,13 +21,13 @@ router.get('/', withAuth, async (req, res) => {
         const post = postData.get({ plain: true });
 
         // Pass serialized data and session flag into template (must be logged in)
-        res.render('post', {
-            ...post,
-            logged_in: req.session.logged_in
-        });
+        // res.render('post', {
+        //     ...post,
+        //     logged_in: req.session.logged_in
+        // });
 
         // Output for postman testing
-        // res.status(200).json(posts);
+        res.status(200).json(post);
     } catch (err) {
         res.status(500).json(err);
     };
