@@ -1,35 +1,65 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
     try {
-        const newPost = await Post.create({
+        const newComment = await Comment.create({
             ...req.body,
             user_id: req.session.user_id,
         });
 
-        req.status(200).json(newPost);
+        req.status(200).json(newComment);
     } catch (err) {
         res.status(400).json(err);
     };
 });
 
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+        console.dir(req.body);
+        console.log(req.params.id);
+        const updatedComment = await Comment.update({
+            ...req.body
+        },
+        {
+            where: {
+                id: req.params.id,
+                user_id: req.session.user_id
+            }
+    });
+
+    if (!updatedComment) {
+        res.status(404).json({ message: 'No comment found with this id!'});
+        return;
+    }
+
+    console.dir(updatedComment);
+
+
+        res.status(200).json(updatedComment);
+
+    } catch (err) {
+        res.status(500).json(err);
+    };
+
+});
+
 router.delete('/:id', withAuth, async (req, res) => {
     try {
-        const postData = await Post.destroy({
+        const commentData = await Comment.destroy({
             where: {
                 id: req.params.id,
                 user_id: req.session.user_id,
             },
         });
 
-        if (!postData) {
-            res.status(404).json({ message: 'No project found with this id!'});
+        if (!commentData) {
+            res.status(404).json({ message: 'No comment found with this id!'});
             return;
         }
 
-        res.status(200).json(postData);
+        res.status(200).json(commentData);
     } catch (err) {
         res.status(500).json(err);
     };
