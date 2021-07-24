@@ -1,17 +1,17 @@
 [
   {
     "title": "Why MVC is so important",
-    "author": "1",
+    "user_id": "1",
     "content": "MVC allows developers to maintain a true separation of concerns, devising their code between the Model layer for data, the View layer for design, and the Controller layer for application logic."
   },
   {
     "title": "I'm baby stumptown",
-    "author": "2",
+    "user_id": "2",
     "content": "I'm baby stumptown prism vexillologist crucifix pour-over poutine, copper mug woke cloud bread humblebrag bushwick tilde. Poke slow-carb tumeric, tilde typewriter YOLO kinfolk snackwave palo santo."
   },
   {
     "title": "Java vs JavaScript",
-    "author": "3",
+    "user_id": "3",
     "content": "Literally +1 hexagon fam. Flannel stumptown fingerstache, farm-to-table health goth art party swag thundercats cornhole succulents twee. Ennui enamel pin kogi man braid mustache williamsburg."
   }
 ]

@@ -15,7 +15,7 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        author: {
+        user_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',

@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
         const postData = await Post.findAll({
             include: [
                 {
-                    model: User,
+                    model: User, as: 'author',
                     attributes: ['username'],
                 },
             ],
@@ -18,12 +18,12 @@ router.get('/', async (req, res) => {
         const posts = postData.map((post) => post.get({ plain: true }));
 
         // Pass serialized data and session flag into template (don't need to be logged in for homepage)
-        res.render('homepage', {
-            posts
-        });
+        // res.render('homepage', {
+        //     posts
+        // });
 
         // Output for postman testing
-        // res.status(200).json(posts);
+        res.status(200).json(posts);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -34,30 +34,32 @@ router.get('/post/:id', withAuth, async (req, res) => {
         const postData = await Post.findByPk(req.params.id, {
             include: [
                 {
-                    model: User,
+                    model: User, as: 'author',
                     attributes: {exclude: ['password']},
                 },
                 {
                     model: Comment,
-                    attributes: [
-                        comment,
-                        commenter,
-                        date,
-                    ]
-                }
+                    include: [
+                        {
+                            model: User, as: 'commenter',
+                            attributes: ['username'],
+                        },
+                    ],
+                },
             ],
         });
 
         const post = postData.get({ plain: true });
 
         // Pass serialized data and session flag into template (must be logged in)
-        res.render('post', {
-            ...post,
-            logged_in: req.session.logged_in
-        });
+        // res.render('post', {
+        //     ...post,
+        //     logged_in: req.session.logged_in
+        // });
 
         // Output for postman testing
-        // res.status(200).json(posts);
+        res.status(200).json(post);
+
     } catch (err) {
         res.status(500).json(err);
     };
@@ -66,18 +68,22 @@ router.get('/post/:id', withAuth, async (req, res) => {
 // Use withAuth middleware to prevent access to route
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
+        console.log(`user_id = ${req.session.user_id}`);
         // Find the logged in user based on the session ID
         const userData = await User.findByPk(req.session.user_id, {
             attributes: { exclude: ['password']},
             include: [{ model: Post}],
         });
 
-        const user = userData.get({ plain: true});
+        const user = userData.get({ plain: true });
 
-        res.render('dashboard', {
-            ...user,
-            logged_in: req.session.logged_in
-        });
+        // res.render('dashboard', {
+        //     ...user,
+        //     logged_in: req.session.logged_in
+        // });
+
+        // Output for postman testing
+        res.status(200).json(user);
 
     } catch (err) {
         res.status(500).json(err);
