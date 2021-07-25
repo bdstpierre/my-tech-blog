@@ -1,0 +1,32 @@
+<!-- Post Details -->
+<div class="row mb-4 post">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <h2>
+                        Edit Post
+                    </h2>
+                </div>
+            </div>
+            <div class="card-body">
+                <form class="edit-form" data-post_id="{{id}}">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" rows="3" id="title" value="{{title}}"></input>
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Content</label>
+                    <textarea class="form-control" rows="3" id="content">{{content}}</textarea>
+                </div>
+                <button type="button" class="block btn btn-primary edit-post-btn" name="update">Update Post</button>                
+                <p></p>
+                <button type="button" class="block btn btn-primary delete-post-btn" name="delete">Delete</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/editPost.js"></script>

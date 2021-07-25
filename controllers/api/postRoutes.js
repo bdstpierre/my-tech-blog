@@ -2,6 +2,27 @@ const router = require('express').Router();
 const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+router.get('/:id', withAuth, async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id);
+
+        const post = postData.get({ plain: true });
+        console.dir(post);
+
+        // Pass serialized data and session flag into template (must be logged in)
+        res.render('edit-post', {
+            post,
+            logged_in: req.session.logged_in
+        });
+
+        // Output for postman testing
+        // res.status(200).json(post);
+
+    } catch (err) {
+        res.status(500).json(err);
+    };
+});
+
 router.post('/', withAuth, async (req, res) => {
     try {
         const newPost = await Post.create({
