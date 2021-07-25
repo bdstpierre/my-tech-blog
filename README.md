@@ -4,8 +4,8 @@
 
 I wrote this application to create a website for posting short tech related blogs.  This was also a good opportunity to practice creating websites with the technologies I am learning in class. 
 
-YOu can take a look at the application at:
-
+You can take a look at the application at:
+[My Tech Blog App](https://bdstpierre-tech-blog.herokuapp.com/)
 
 ![Screenshot of the apllication or project](public/images/thumbnail.png)
 ## Table of Contents
