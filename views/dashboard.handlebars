@@ -1,0 +1,12 @@
+<!-- Loop over each object in the posts array -->
+{{#each posts as |post|}}
+    {{> post-details}}
+{{/each}}
+
+<div >
+    <a href='/new-post'><div id='new-post-btn'>+ New Post</div></a>
+</div>
+
+<script>
+    logo = document.querySelector('.logo').innerHTML = 'Your Dashboard';
+</script>

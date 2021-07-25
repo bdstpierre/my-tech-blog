@@ -81,13 +81,36 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
         const user = userData.get({ plain: true });
 
-        // res.render('dashboard', {
-        //     ...user,
-        //     logged_in: req.session.logged_in
-        // });
+        res.render('dashboard', {
+            ...user,
+            logged_in: req.session.logged_in
+        });
 
         // Output for postman testing
-        res.status(200).json(user);
+        // res.status(200).json(user);
+
+    } catch (err) {
+        res.status(500).json(err);
+    };
+});
+
+router.get('/new-post', withAuth, async (req, res) => {
+    try {
+        // console.log(`user_id = ${req.session.user_id}`);
+        // // Find the logged in user based on the session ID
+        // const userData = await User.findByPk(req.session.user_id, {
+        //     attributes: { exclude: ['password']},
+        //     include: [{ model: Post}],
+        // });
+
+        // const user = userData.get({ plain: true });
+
+        res.render('new-post', {
+            logged_in: req.session.logged_in
+        });
+
+        // Output for postman testing
+        // res.status(200).json(user);
 
     } catch (err) {
         res.status(500).json(err);

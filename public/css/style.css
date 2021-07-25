@@ -32,13 +32,13 @@ a:visited {
 }
 
 a:focus {
-  border-bottom: 1px solid;
+  /* border-bottom: 1px solid; */
   background: #BAE498;
   color: var(--dark-color);
 }
 
 a:hover {
-  border-bottom: 1px solid;
+  /* border-bottom: 1px solid; */
   background: #CDFEAA;
   color: var(--dark-color);
 }
@@ -49,9 +49,9 @@ a:active {
   color: var(--dark-color);
 }
 
-header, .project:not(:last-child) {
+/* header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
-}
+} */
 
 header {
   color: var(--light-color);
@@ -72,7 +72,7 @@ header {
   color: var(--dark-color);;
   text-decoration: none;
   background-color: #CDFEAA;
-  border-bottom: 1px solid;
+  /* border-bottom: 1px solid; */
 }
 
 .logo {
@@ -109,4 +109,30 @@ header {
 #dark-link {
   color: var(--dark-color);
   line-height: 36px;
+}
+
+#new-post-btn {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  height: 60px;
+  line-height: 60px;
+  width: 200px;
+  border-radius: 10px;
+  font-size: 24px;
+  text-align: center;
+  margin: auto;
+}
+
+#new-post-btn:hover {
+  color: var(--dark-color);;
+  text-decoration: none;
+  background-color: #CDFEAA;
+  border: 2px solid;
+}
+
+.card-header-link:hover {
+  color: var(--dark-color);;
+  text-decoration: none;
+  background-color: #CDFEAA;
+  border: 2px solid;
 }
