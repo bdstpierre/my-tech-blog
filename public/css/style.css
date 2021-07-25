@@ -1,10 +1,11 @@
 :root {
   --dark-color: #231010;
   --light-color: #d9ead3;
+  --shadow-color: #a7a7a7;
 }
 
 body {
-  width: 300px;
+  /* width: 300px; */
   margin: 0 auto;
   font-size: 1.2rem;
   font-family: sans-serif;
@@ -23,26 +24,29 @@ a {
 }
 
 a:link {
-  color: #265301;
+  color: var(--light-color);
 }
 
 a:visited {
-  color: #437A16;
+  color: var(--light-color);
 }
 
 a:focus {
   border-bottom: 1px solid;
   background: #BAE498;
+  color: var(--dark-color);
 }
 
 a:hover {
   border-bottom: 1px solid;
   background: #CDFEAA;
+  color: var(--dark-color);
 }
 
 a:active {
   background: #265301;
   color: #CDFEAA;
+  color: var(--dark-color);
 }
 
 header, .project:not(:last-child) {
@@ -54,29 +58,55 @@ header {
   background-color: var(--dark-color);
 }
 
-.logo {
-  color: var(--dark-color);
-  background-color: var(--light-color);
-}
-
 .no-button {
   background: none;
   border: none;
-  padding: 0;
+  padding: 8px 20px;
   cursor: pointer;
-  color: #1b89bc;
+  color: var(--light-color);
   text-decoration: none;
   font-size: 100%;
 }
 
 .no-button:hover {
-  color: #065b83;
-  text-decoration: underline;
+  color: var(--dark-color);;
+  text-decoration: none;
+  background-color: #CDFEAA;
+  border-bottom: 1px solid;
 }
 
-.dollar-amount {
-  color: #056605;
+.logo {
+  width: 280px;
+  font-size: 32px;
+  text-align: center;
   font-weight: bold;
-  margin-left: -5px;
+  color: var(--dark-color);
+  background-color: var(--light-color);
+  border-radius: 12px;
+  box-shadow: 6px 6px var(--shadow-color);
 }
 
+.card-header {
+  color: var(--light-color);
+  background-color: var(--dark-color);
+}
+
+.card {
+  border: solid;
+  border-color: var(--dark-color);
+  color: var(--dark-color);
+  background-color: var(--light-color);
+}
+
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  text-align: center;
+  background-color: rgb(83, 82, 82);
+}
+
+#dark-link {
+  color: var(--dark-color);
+  line-height: 36px;
+}

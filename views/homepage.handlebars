@@ -1,18 +1,4 @@
 <!-- Loop over each object in the posts array -->
 {{#each posts as |post|}}
-<div class="row mb-4 post">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <ul class="list-inline">
-                    <li class="list-inline-item>"><h2>{{post.title}}</h2></li>
-                    <li class="list-inliine-item">Posted by {{post.author}} on {{post.date}}</li>
-                </ul>
-            </div>
-            <div class="card-body">
-                <p class="card-text">{{post.content}}</p>
-            </div>
-        </div>
-    </div>
-</div>
+    {{> post-details}}
 {{/each}}

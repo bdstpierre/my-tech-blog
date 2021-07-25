@@ -16,14 +16,17 @@ router.get('/', async (req, res) => {
 
         // Serialize data so the template can read it
         const posts = postData.map((post) => post.get({ plain: true }));
+        console.dir(posts);
+        console.log(req.session.logged_in);
 
         // Pass serialized data and session flag into template (don't need to be logged in for homepage)
-        // res.render('homepage', {
-        //     posts
-        // });
+        res.render('homepage', {
+            posts: {...posts},
+            logged_in: req.session.logged_in            
+        });
 
         // Output for postman testing
-        res.status(200).json(posts);
+        // res.status(200).json(posts);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -50,15 +53,16 @@ router.get('/post/:id', withAuth, async (req, res) => {
         });
 
         const post = postData.get({ plain: true });
+        console.dir(post);
 
         // Pass serialized data and session flag into template (must be logged in)
-        // res.render('post', {
-        //     ...post,
-        //     logged_in: req.session.logged_in
-        // });
+        res.render('post', {
+            ...post,
+            logged_in: req.session.logged_in
+        });
 
         // Output for postman testing
-        res.status(200).json(post);
+        // res.status(200).json(post);
 
     } catch (err) {
         res.status(500).json(err);
